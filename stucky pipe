@@ -1,0 +1,42 @@
+pipeline {
+agent any
+stages {
+stage('Create Notes App') {
+steps {
+script {
+writeFile file: 'NotesApp.java', text: '''
+
+import java.util.ArrayList;
+public class NotesApp {
+public static void main(String[] args) {
+System.out.println("=== Sticky Notes App ===");
+// Simulate some notes
+ArrayList<String> notes = new ArrayList<>();
+notes.add("Buy groceries");
+notes.add("Complete Jenkins pipeline");
+notes.add("Call team at 4 PM");
+notes.add("Prepare for presentation");
+// Display notes
+for(int i = 0; i < notes.size(); i++) {
+System.out.println("Note " + (i+1) + ": " + notes.get(i));
+}
+System.out.println("=== End of Notes ===");
+}
+}
+'''
+}
+}
+}
+stage('Compile Notes App') {
+steps {
+bat 'javac NotesApp.java'
+}
+}
+stage('Run Notes App') {
+steps {
+bat 'java NotesApp'
+}
+
+}
+}
+}
