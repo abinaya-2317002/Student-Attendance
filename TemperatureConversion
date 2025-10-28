@@ -1,0 +1,26 @@
+public class TemperatureConversion {
+public static void main(String[] args) {
+long start = System.nanoTime();
+System.out.println("Timer started...");
+double celsius1 = 25.0;
+double fahrenheit1 = celsiusToFahrenheit(celsius1);
+System.out.printf("%.2f°C = %.2f°F%n", celsius1, fahrenheit1);
+double fahrenheit2 = 212.0;
+double celsius2 = fahrenheitToCelsius(fahrenheit2);
+System.out.printf("%.2f°F = %.2f°C%n", fahrenheit2, celsius2);
+dummyWork();
+long end = System.nanoTime();
+long elapsedMs = (end - start) / 1_000_000;
+System.out.println("Timer stopped. Elapsed: " + elapsedMs + " ms");
+}
+private static double celsiusToFahrenheit(double c) {
+return c * 9.0 / 5.0 + 32.0;
+}
+private static double fahrenheitToCelsius(double f) {
+return (f - 32.0) * 5.0 / 9.0;
+}
+private static void dummyWork() {
+long s = 0;
+for (int i = 0; i < 1_000_000; i++) s += i;
+}
+}
